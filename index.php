@@ -23,6 +23,6 @@ $fiscDipendente1->setStraordinari(400);
 
 var_dump($fiscDipendente1);
 
-echo($fiscDipendente1->calcAnnualeNettoStraordinario());
+echo($fiscDipendente1->calcAnnualeNetto());
 
 ?>
