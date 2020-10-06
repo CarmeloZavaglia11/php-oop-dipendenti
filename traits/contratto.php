@@ -8,11 +8,11 @@
         public function typeContract($_contratto) {
 
             if (empty($_contratto)) {
-                die('Nessun tipo di contratto');
+                throw new Exception('Nessun tipo di contratto');
             }
 
             if (is_numeric($_contratto)) {
-                die('Contratto non valido');
+                throw new Exception('contratto non valido');
             }
 
             return $this->contratto = $_contratto;

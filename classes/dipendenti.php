@@ -11,15 +11,15 @@ class Dipendente {
     public function __construct($_nome,$_cognome,$_eta,$_sesso = 'non definito') {
 
         if (empty($_nome)) {
-            die('nome non inserito');
+            throw new Exception('nome non inserito');
         }
 
         if (empty($_cognome)) {
-            die('cognome non inserito');
+            throw new Exception('cognome non inserito');
         }
 
         if (empty($_eta)) {
-            die('età non inserita');
+            throw new Exception('età non inserita');
         }
 
         $this->nome = $_nome;
@@ -36,7 +36,7 @@ class Dipendente {
 
     public function setNome($_nome) {
         if (is_numeric($_nome)) {
-            die('nome non valido');
+            throw new Exception('nome non valido');
         }
         return $this->nome = $_nome;
     }
@@ -47,7 +47,7 @@ class Dipendente {
 
     public function setCognome($_cognome) {
         if (is_numeric($_cognome)) {
-            die('cognome non valido');
+            throw new Exception('cognome non valido');
         }
         return $this->cognome = $_cognome;
     }
@@ -58,9 +58,13 @@ class Dipendente {
 
     public function setSesso($_sesso) {
         if (is_numeric($_sesso)) {
-            die('sesso non valido');
+            throw new Exception('sesso non valido');
         }
         return $this->sesso = $_sesso;
+    }
+
+    public function __toString() {
+        return "<br> Nome: ".$this->nome."<br> Cognome: ".$this->cognome."<br> età: ".$this->eta."<br> sesso: ".$this->sesso."<br>";
     }
 
     

@@ -14,23 +14,23 @@ include_once __DIR__.'/../traits/contratto.php';
         public function __construct($_nome,$_cognome,$_eta,$_cod_fisc,$_mansione,$_mensile_lordo = 0,$_straordinari = 0) {
 
             if (empty($_nome)) {
-                die('nome non inserito');
+                throw new Exception('nome non inserito');
             }
     
             if (empty($_cognome)) {
-                die('cognome non inserito');
+                throw new Exception('cognome non inserito');
             }
     
             if (empty($_eta)) {
-                die('età non inserita');
+                throw new Exception('età non inserita');
             }
 
             if (strlen($_cod_fisc) <> 16) {
-                die('Codice Fiscale errato');
+                throw new Exception('codice fiscale errato');
             }
 
             if (empty($_mansione)) {
-                die('mansione non inserita');
+                throw new Exception('mansione non inserita');
             }
 
 
@@ -53,11 +53,11 @@ include_once __DIR__.'/../traits/contratto.php';
         public function setCodFisc($_cod) {
 
             if (strlen($_cod) <> 16) {
-                die('Codice Fiscale errato');
+                throw new Exception('codice fiscale errato');
             }
 
             if (is_numeric($_cod)) {
-                die('Codice Fiscale soltanto numerico non valido');
+                throw new Exception('codice fiscale soltanto numerico, non valido');
             }
 
             return $this->cod_fisc = $_cod;
@@ -71,7 +71,7 @@ include_once __DIR__.'/../traits/contratto.php';
         public function setMansione($_mansione) {
 
             if (is_numeric($_mansione)) {
-                die('mansione non valida');
+                throw new Exception('mansione non valida');
             }
 
             return $this->mansione = $_mansione;
@@ -85,7 +85,7 @@ include_once __DIR__.'/../traits/contratto.php';
         public function setMensileLordo($_mensile) {
 
             if (is_string($_mensile)) {
-                die('mensile non valido');
+                throw new Exception('mensile non valido');
             }
 
             return $this->mensile_lordo = $_mensile;
@@ -99,7 +99,7 @@ include_once __DIR__.'/../traits/contratto.php';
         public function setStraordinari($_straordinari) {
 
             if (is_string($_straordinari)) {
-                die('straordinario non valido');
+                throw new Exception('straordinario non valido');
             }
 
             return $this->straordinari = $_straordinari;
@@ -110,6 +110,12 @@ include_once __DIR__.'/../traits/contratto.php';
             $mensile_lordo = $this->mensile_lordo;
 
             return "Annuale Netto: ".($mensile_lordo - $mensile_lordo / 4) * 12 ." €" ;
+
+        }
+
+        public function __toString() {
+
+            return "<br> Nome: ".$this->nome."<br> Cognome: ".$this->cognome."<br> età: ".$this->eta."<br> Codice Fiscale: ".$this->cod_fisc."<br> Mansione: ".$this->mansione."<br> Mensile Lordo: ".$this->mensile_lordo."<br> Straordinari: ".$this->straordinari."<br>";
 
         }
 
